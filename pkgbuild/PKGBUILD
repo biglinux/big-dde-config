@@ -18,7 +18,7 @@ elif [ -e "pkgbuild.install" ];then
 fi
 
 package() {
-    # Verify default folder
+    ## Verify default folder
     if [ -d "${srcdir}/${pkgname}/${pkgname}" ]; then
         InternalDir="${srcdir}/${pkgname}/${pkgname}"
     else
