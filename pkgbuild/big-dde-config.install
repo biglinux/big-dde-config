@@ -1,0 +1,36 @@
+## arg 1: the new package version
+pre_install() {
+    # Do something here if needed
+}
+
+## arg 1: the new package version
+post_install() {
+    # Check if the file /etc/skel/.conf/dconf/user exists
+    if [ -e "/etc/skel/.conf/dconf/user" ]; then
+        # Make a backup of the existing file
+        mv -f "/etc/skel/.conf/dconf/user" "/etc/skel/.conf/dconf/user.bak"
+    fi
+    
+    # Copy the user file from the package to /etc/skel/.conf/dconf/
+    cp -f "/path/to/package/user" "/etc/skel/.conf/dconf/user"
+}
+
+## arg 2: the old package version
+pre_upgrade() {
+    pre_install "$1"
+}
+
+## arg 2: the old package version
+post_upgrade() {
+    post_install "$1"
+}
+
+## arg 1: the old package version
+pre_remove() {
+    # Do something here if needed
+}
+
+## arg 1: the old package version
+post_remove() {
+    # Do something here if needed
+}
