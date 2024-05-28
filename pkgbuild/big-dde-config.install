@@ -1,39 +1,33 @@
 ## arg 1: the new package version
-pre_install() {
+# pre_install() {
+# }
+
+## arg 1: the new package version
+post_install() {
     # Check if the file /etc/skel/.config/dconf/user exists
     if [ -e "/etc/skel/.config/dconf/user" ]; then
         # Make a backup of the existing file
         mv -f "/etc/skel/.config/dconf/user" "/etc/skel/.config/dconf/user.bak"
     fi
-    
-    # Check if the file /etc/skel/.config/kglobalshortcutsrc exists
-    if [ -e "/etc/skel/.config/kglobalshortcutsrc" ]; then
-        # Make a backup of the existing file
-        mv -f "/etc/skel/.config/kglobalshortcutsrc" "/etc/skel/.config/kglobalshortcutsrc.bak"
-    fi
+    mv -f "/etc/skel/.config/dconf/user.dde" "/etc/skel/.config/dconf/user"
 }
 
-## arg 1: the new package version
-post_install() {
-    # Do something here if needed
-}
-
-## arg 2: the old package version
-pre_upgrade() {
-    pre_install "$1"
-}
+# ## arg 2: the old package version
+# pre_upgrade() {
+#     pre_install "$1"
+# }
 
 ## arg 2: the old package version
 post_upgrade() {
     post_install "$1"
 }
 
-## arg 1: the old package version
-pre_remove() {
-    # Do something here if needed
-}
+# ## arg 1: the old package version
+# pre_remove() {
+#     # Do something here if needed
+# }
 
-## arg 1: the old package version
-post_remove() {
-    # Do something here if needed
-}
+# ## arg 1: the old package version
+# post_remove() {
+#     # Do something here if needed
+# }
