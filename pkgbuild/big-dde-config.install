@@ -1,18 +1,21 @@
 ## arg 1: the new package version
 pre_install() {
-    # Do something here if needed
+    # Check if the file /etc/skel/.config/dconf/user exists
+    if [ -e "/etc/skel/.config/dconf/user" ]; then
+        # Make a backup of the existing file
+        mv -f "/etc/skel/.config/dconf/user" "/etc/skel/.config/dconf/user.bak"
+    fi
+    
+    # Check if the file /etc/skel/.config/kglobalshortcutsrc exists
+    if [ -e "/etc/skel/.config/kglobalshortcutsrc" ]; then
+        # Make a backup of the existing file
+        mv -f "/etc/skel/.config/kglobalshortcutsrc" "/etc/skel/.config/kglobalshortcutsrc.bak"
+    fi
 }
 
 ## arg 1: the new package version
 post_install() {
-    # Check if the file /etc/skel/.conf/dconf/user exists
-    if [ -e "/etc/skel/.conf/dconf/user" ]; then
-        # Make a backup of the existing file
-        mv -f "/etc/skel/.conf/dconf/user" "/etc/skel/.conf/dconf/user.bak"
-    fi
-    
-    # Copy the user file from the package to /etc/skel/.conf/dconf/
-    cp -f "/path/to/package/user" "/etc/skel/.conf/dconf/user"
+    # Do something here if needed
 }
 
 ## arg 2: the old package version
